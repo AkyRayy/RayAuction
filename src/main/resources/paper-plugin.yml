@@ -1,0 +1,23 @@
+name: RayAuction
+version: "${version}"
+main: ray.labs.rayauction.RayAuctionPlugin
+loader: ray.labs.rayauction.platform.RayAuctionLibraries
+api-version: "1.21.11"
+description: Fixed-price auction house for Paper and Folia servers.
+authors:
+  - AkyRayy
+website: "https://ray.labs"
+dependencies:
+  server-plugin:
+    Vault:
+      load: BEFORE
+      required: false
+    CoinsEngine:
+      load: BEFORE
+      required: false
+    PlayerPoints:
+      load: BEFORE
+      required: false
+    PlaceholderAPI:
+      load: BEFORE
+      required: false

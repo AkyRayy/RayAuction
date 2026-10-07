@@ -1,0 +1,17 @@
+# Сборка
+.gradle/
+build/
+out/
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# Тестовые серверы
+run/

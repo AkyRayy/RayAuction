@@ -1,0 +1,58 @@
+# ============================================================
+#  RayAuction — чёрный список предметов
+#  Проверяется при выставлении лота и при открытии продажи из руки.
+#  Все значения — в нижнем регистре (minecraft:diamond_sword).
+# ============================================================
+
+version: 1
+
+# Запретить продажу любых шалкеров и бочек, даже пустых.
+# Содержимое шалкеров в любом случае не переносится между мирами —
+# оставьте true, если у вас есть плагины с привязкой NBT к миру.
+block-shulker-boxes: false
+
+# Право, позволяющее обходить чёрный список (для админов).
+bypass-permission: "rayauction.blacklist.bypass"
+
+# Названия материалов из org.bukkit.Material.
+# Здесь же можно писать id с пространством имён: minecraft:bedrock.
+materials:
+  - "bedrock"
+  - "barrier"
+  - "light"
+  - "structure_void"
+  - "end_portal_frame"
+  - "spawner"
+  - "trial_spawner"
+  - "vault"
+  - "command_block"
+  - "chain_command_block"
+  - "repeating_command_block"
+  - "command_block_minecart"
+  - "structure_block"
+  - "jigsaw"
+  - "debug_stick"
+  - "knowledge_book"
+  - "written_book"
+  - "enchanted_golden_apple"
+  - "totem_of_undying"
+  - "elytra"
+  - "dragon_egg"
+  - "nether_star"
+  - "beacon"
+  - "shulker_shell"
+
+# Подстроки в отображаемом имени предмета (регистр игнорируется).
+# Поймает предметы, переименованные другими плагинами.
+lore:
+  - "привязан"
+  - "не продаётся"
+  - "quest item"
+  - "soulbound"
+  - "untradeable"
+
+# Ключи NBT-компонентов, из-за которых предмет запрещено продавать.
+# Пример: minecraft:custom_data используется квестовыми плагинами.
+nbt-keys:
+  - "minecraft:custom_data"
+  - "minecraft:item_name"

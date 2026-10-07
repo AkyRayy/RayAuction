@@ -1,0 +1,266 @@
+# ============================================================
+#  RayAuction — раскладка меню
+#  Слоты считаются с 0. Меню на 54 слота (строки 0-5):
+#    строка 0: 0-8, строка 1: 9-17, строка 2: 18-26,
+#    строка 3: 27-35, строка 4: 36-44, строка 5: 45-53.
+#  Меню подтверждения — 27 слотов.
+#
+#  Тексты кнопок и предметов берутся из messages.yml (секция gui.button.<id>).
+#  Поле name здесь — запасной вариант, если ключа в messages.yml нет.
+#  Кнопка без slot получает следующий свободный слот по порядку.
+# ============================================================
+
+# Заголовки и размеры меню.
+# Размер всегда округляется вниз до кратного 9 (минимум 9, максимум 54).
+menus:
+  browser:
+    title: "gui.browser.title"
+    size: 54
+  sell:
+    title: "gui.sell.title"
+    size: 54
+  confirm:
+    title: "gui.confirm.title"
+    size: 27
+  history:
+    title: "gui.history.title"
+    size: 54
+  mailbox:
+    title: "gui.mailbox.title"
+    size: 54
+  player:
+    title: "gui.player.title"
+    size: 54
+  preview:
+    title: "gui.preview.title"
+    size: 54
+
+layout:
+  # Диапазон слотов под лоты во всех списках (браузер, история, почта, лоты игрока).
+  # Кнопки не должны попадать в этот диапазон — их перетрут предметы.
+  item-slot-start: 9
+  item-slot-end: 44
+
+fill:
+  # Заполнитель пустых слотов. enabled: false — оставлять пустые слоты пустыми.
+  enabled: true
+  material: "black_stained_glass_pane"
+
+behaviour:
+  # Закрывать меню сразу после успешной покупки.
+  # false — меню остаётся открытым и обновляется.
+  close-on-purchase: false
+
+buttons:
+  # ---------- Общий каталог (верхняя панель, слоты 0-8) ----------
+  category-weapons:
+    material: "diamond_sword"
+    slot: 0
+    menu: "browser"
+  category-armor:
+    material: "diamond_chestplate"
+    slot: 1
+    menu: "browser"
+  category-blocks:
+    material: "grass_block"
+    slot: 2
+    menu: "browser"
+  category-food:
+    material: "cooked_beef"
+    slot: 3
+    menu: "browser"
+  category-rare:
+    material: "nether_star"
+    slot: 4
+    menu: "browser"
+  category-other:
+    material: "chest"
+    slot: 5
+    menu: "browser"
+  category-all:
+    material: "compass"
+    slot: 6
+    menu: "browser"
+  search:
+    material: "name_tag"
+    slot: 7
+    menu: "browser"
+  sort:
+    material: "hopper"
+    slot: 8
+    menu: "browser"
+
+  # ---------- Общая нижняя панель (слоты 45-53) ----------
+  back:
+    material: "barrier"
+    slot: 45
+    menu: "browser"
+  previous-page:
+    material: "arrow"
+    slot: 46
+    menu: "browser"
+  page-info:
+    material: "paper"
+    slot: 49
+    menu: "browser"
+  next-page:
+    material: "arrow"
+    slot: 52
+    menu: "browser"
+  sell:
+    material: "gold_ingot"
+    slot: 47
+    menu: "browser"
+  my-listings:
+    material: "bookshelf"
+    slot: 48
+    menu: "browser"
+  history:
+    material: "writable_book"
+    slot: 50
+    menu: "browser"
+  mailbox:
+    material: "chest_minecart"
+    slot: 51
+    menu: "browser"
+
+  # ---------- История: своя кнопка «назад» ----------
+  history-back:
+    material: "barrier"
+    slot: 45
+    menu: "history"
+
+  # ---------- Почта ----------
+  mailbox-back:
+    material: "barrier"
+    slot: 45
+    menu: "mailbox"
+
+  # Кнопка «снять все свои лоты» в меню «Мои лоты» (слот 53 — свободен в нижнем ряду).
+  player-cancel-all:
+    material: "tnt"
+    slot: 53
+    menu: "player"
+  mailbox-claim-all:
+    material: "lime_dye"
+    slot: 4
+    menu: "mailbox"
+
+  # ---------- Фильтры истории (слоты 0-5) ----------
+  history-filter:
+    material: "paper"
+    slot: 0
+    menu: "history"
+  all-history-filter:
+    material: "book"
+    slot: 0
+    menu: "history"
+  sold-history-filter:
+    material: "gold_ingot"
+    slot: 1
+    menu: "history"
+  bought-history-filter:
+    material: "emerald"
+    slot: 2
+    menu: "history"
+  expired-history-filter:
+    material: "clock"
+    slot: 3
+    menu: "history"
+  cancelled-history-filter:
+    material: "orange_dye"
+    slot: 4
+    menu: "history"
+  returned-history-filter:
+    material: "red_dye"
+    slot: 5
+    menu: "history"
+
+  # ---------- Меню продажи ----------
+  sell-item:
+    material: "air"
+    slot: 11
+    menu: "sell"
+  sell-info:
+    material: "book"
+    slot: 15
+    menu: "sell"
+  sell-price:
+    material: "gold_nugget"
+    slot: 22
+    menu: "sell"
+    glow: true
+  sell-confirm:
+    material: "lime_stained_glass_pane"
+    slot: 24
+    menu: "sell"
+  sell-cancel:
+    material: "red_stained_glass_pane"
+    slot: 20
+    menu: "sell"
+
+  # Валюты: слоты 45-48, порядок — из config.yml (economy.currencies).
+  currency-0:
+    material: "gold_ingot"
+    slot: 45
+    menu: "sell"
+  currency-1:
+    material: "emerald"
+    slot: 46
+    menu: "sell"
+  currency-2:
+    material: "diamond"
+    slot: 47
+    menu: "sell"
+  currency-3:
+    material: "amethyst_shard"
+    slot: 48
+    menu: "sell"
+
+  # Сроки: слоты 49-52, порядок — из config.yml (auction.default-durations).
+  duration-0:
+    material: "clock"
+    slot: 49
+    menu: "sell"
+  duration-1:
+    material: "clock"
+    slot: 50
+    menu: "sell"
+  duration-2:
+    material: "clock"
+    slot: 51
+    menu: "sell"
+  duration-3:
+    material: "clock"
+    slot: 52
+    menu: "sell"
+
+  # ---------- Подтверждение покупки (27 слотов) ----------
+  confirm-item:
+    material: "air"
+    slot: 11
+    menu: "confirm"
+  confirm-buy:
+    material: "lime_stained_glass_pane"
+    slot: 15
+    menu: "confirm"
+  confirm-remove:
+    material: "orange_stained_glass_pane"
+    slot: 15
+    menu: "confirm"
+  confirm-cancel:
+    material: "red_stained_glass_pane"
+    slot: 17
+    menu: "confirm"
+  confirm-preview:
+    material: "ender_eye"
+    slot: 13
+    menu: "confirm"
+
+  # ---------- Просмотр содержимого шалкера ----------
+  # Содержимое выводится в слоты 9-35 (жёстко в коде), кнопка возврата — 49.
+  preview-back:
+    material: "barrier"
+    slot: 49
+    menu: "preview"
+    name: "Закрыть"

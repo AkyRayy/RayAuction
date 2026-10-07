@@ -1,0 +1,289 @@
+# ============================================================
+#  RayAuction — все тексты, которые видит игрок
+#  Формат: MiniMessage (https://docs.advntr.dev/minimessage)
+#  Никаких &-кодов и §. Перенос строки в списке = несколько строк lore.
+# ============================================================
+
+# Префикс добавляется ко всем сообщениям в чате.
+prefix: "<dark_gray>[<gradient:#FFD700:#FF8C00>Аукцион</gradient>]</dark_gray> "
+
+# Ключи, к которым префикс НЕ добавляется (по префиксу ключа).
+# Названия меню, кнопок и описания предметов должны быть чистыми.
+unprefixed-keys:
+  - "gui."
+
+command:
+  players-only: "<red>Команда доступна только игрокам."
+  player-not-found: "<red>Игрок не найден."
+  no-permission: "<red>Недостаточно прав."
+  auction:
+    description: "Аукцион"
+  admin:
+    description: "Управление аукционом"
+
+storage:
+  failure: "<red>База данных недоступна. Попробуйте позже."
+  read-only: "<red>Аукцион временно работает только на чтение: база данных недоступна."
+
+sell:
+  hand-empty: "<red>Возьмите предмет в основную руку и повторите."
+  no-item: "<red>Предмет не найден."
+  invalid-item: "<red>Этот предмет нельзя выставить."
+  blacklisted: "<red>Предмет запрещён к продаже (<yellow><reason></yellow>)."
+  price-too-low: "<red>Цена должна быть больше нуля."
+  price-below-min: "<red>Минимальная цена лота: <yellow><min></yellow>."
+  price-above-max: "<red>Максимальная цена лота: <yellow><max></yellow>."
+  price-out-of-range: "<red>Цена вне допустимого диапазона <yellow><min></yellow> — <yellow><max></yellow>."
+  invalid-duration: "<red>Выберите срок из предложенных."
+  limit-reached: "<red>Достигнут лимит лотов: <yellow><active></yellow>/<yellow><limit></yellow>."
+  incomplete: "<red>Выберите валюту, срок и укажите цену."
+  success: "<green>Лот выставлен: <white><item></white> за <gold><price> <currency></gold> (<white><duration></white>)."
+  cancelled: "<yellow>Продажа отменена, предмет возвращён в инвентарь."
+  returned-to-inventory: "<yellow>Предмет возвращён в инвентарь."
+  returned-to-mailbox: "<yellow>В инвентаре нет места — предмет отправлен в почту (<white>/ah mailbox</white>)."
+
+buy:
+  processing: "<gray>Проводим операцию..."
+  not-found: "<red>Лот не найден."
+  not-active: "<red>Лот уже недоступен."
+  expired: "<red>Срок лота истёк."
+  own-auction: "<red>Нельзя покупать собственный лот."
+  currency-unavailable: "<red>Валюта лота сейчас недоступна на сервере."
+  not-enough-money: "<red>Недостаточно средств: нужно <gold><required> <currency></gold>, у вас <yellow><balance></yellow>."
+  payout-failed: "<red>Не удалось перевести деньги продавцу. Средства не списаны."
+  lost-race: "<red>Лот купили раньше вас."
+  tax-account-missing: "<red>Аккаунт для комиссии (<yellow><account></yellow>) не настроен."
+  success: "<green>Вы купили <white><item></white> у <white><seller></white> за <gold><price> <currency></gold>."
+
+cancel:
+  not-found: "<red>Лот не найден."
+  not-active: "<red>Лот уже недоступен."
+  not-owner: "<red>Это не ваш лот."
+  success: "<green>Лот снят с продажи, предмет возвращён."
+
+blacklist-material: "тип предмета"
+blacklist-lore: "текст предмета"
+blacklist-nbt: "метка предмета"
+
+mailbox:
+  claimed: "<green>Получено предметов: <white><count></white>."
+  empty: "<yellow>Почта пуста."
+
+join:
+  experience-credited: "<green>На счёт опыта зачислено <white><amount></white> XP с продаж."
+  mail-delivered: "<green>Выдано из почты: <white><count></white>."
+  mail-pending: "<yellow>В почте осталось <white><count></white>. Откройте: <white>/ah mailbox</white>."
+
+admin:
+  reload:
+    success: "<green>Конфигурация перезагружена."
+    failure: "<red>Перезагрузка не удалась, подробности в консоли."
+  limit:
+    invalid: "<red>Значение должно быть целым: -1 (безлимит) или 0 и больше."
+    set: "<green>Лимит игрока <white><player></white> установлен на <gold><amount></gold>."
+    given: "<green>Игроку <white><player></white> добавлено <gold><amount></gold> слотов, всего <gold><total></gold>."
+    taken: "<green>У игрока <white><player></white> изъято <gold><amount></gold> слотов, осталось <gold><total></gold>."
+    reset: "<green>Лимит игрока <white><player></white> сброшен к значению по умолчанию (<gold><total></gold>)."
+  history:
+    line: "<gray>[<white><role></white>] <white><item></white> — <gold><price> <currency></gold> (<white><status></white>)"
+  stats:
+    header: "<gold>📊 Статистика аукциона</gold>"
+    active: "<yellow>Активных лотов: <white><active></white>"
+    top-seller: "<yellow>Лучший продавец: <white><seller></white> <gray>(<seller-amount> шт.)"
+    top-buyer: "<yellow>Лучший покупатель: <white><buyer></white> <gray>(<buyer-amount> шт.)"
+    cheapest: "<yellow>Самый дешёвый лот: <white><item></white> за <gold><price></gold>"
+  remove:
+    done: "<green>Лот <white><id></white> снят с продажи."
+  give:
+    done: "<green>Начислено <gold><amount> <currency></gold>."
+    no-currency: "<red>В конфиге нет ни одной валюты."
+  currency:
+    unknown: "<red>Валюта не найдена. Доступны: <white><known></white>."
+    info: "<gray>id=<white><id></white> имя=<white><name></white> символ=<white><symbol></white> доступна=<white><available></white>"
+
+gui:
+  browser:
+    title: "Аукцион"
+  player:
+    title: "Лоты игрока <player>"
+  confirm:
+    title: "<item>"
+  sell:
+    title: "Продажа предмета"
+    currency: "<yellow><currency></yellow> <gray><selected>"
+  preview:
+    title: "Содержимое: <item>"
+    not-container: "<red>У этого предмета нет содержимого."
+  anvil:
+    title: "Введите цену"
+    input-name: "<yellow>Переименуйте, чтобы задать цену"
+    empty: "<red>Введите цену в наковальне."
+    invalid: "<red>Это не число. Пример: 1500 или 1500.50"
+  search:
+    prompt: "<gray>Напишите в чат текст для поиска. Пустое сообщение отменяет поиск."
+    empty: "<yellow>Поиск отменён."
+  sort:
+    date_asc: "сначала старые"
+    date_desc: "сначала новые"
+    price_asc: "дешевле"
+    price_desc: "дороже"
+  listing:
+    name: "<white><item>"
+    lore:
+      - "<gray>Продавец: <white><seller>"
+      - "<gray>Цена: <gold><price> <currency>"
+      - "<gray>Осталось: <white><remaining>"
+      - ""
+      - "<yellow>ЛКМ — купить/открыть"
+      - "<yellow>ПКМ — содержимое (если есть)"
+  history:
+    title: "История операций"
+    name: "<white><item>"
+    lore:
+      - "<gray>Роль: <white><role>"
+      - "<gray>Вторая сторона: <white><player>"
+      - "<gray>Цена: <gold><price> <currency>"
+      - "<gray>Статус: <white><status>"
+      - "<gray>Дата: <white><date>"
+    filter:
+      all: "Все"
+      sold: "Продано"
+      bought: "Куплено"
+      expired: "Истекло"
+      cancelled: "Отменено"
+      returned: "Возврат"
+    role:
+      buyer: "покупка"
+      seller: "продажа"
+    status:
+      active: "активен"
+      sold: "продан"
+      cancelled: "отменён"
+      expired: "истёк"
+      returned: "возвращён"
+  mailbox:
+    title: "Почта"
+    item-name: "<white><item>"
+    item-lore:
+      - "<gray>Причина: <white><reason>"
+      - "<gray>Дата: <white><date>"
+      - ""
+      - "<yellow>ЛКМ — забрать"
+    money-name: "<gold><price> <currency>"
+    money-lore:
+      - "<gray>Причина: <white><reason>"
+      - "<gray>Дата: <white><date>"
+    reason:
+      purchase_income: "доход с продажи"
+      expired_return: "возврат истёкшего лота"
+      cancelled_return: "возврат отменённого лота"
+      delivery_overflow: "не хватило места в инвентаре"
+      listing_rollback: "сбой при выставлении"
+      admin_compensation: "компенсация"
+  button:
+    back:
+      name: "<red>Закрыть"
+    preview-back:
+      name: "<red>Закрыть"
+    history-back:
+      name: "<red>Назад к аукциону"
+    mailbox-back:
+      name: "<red>Назад к аукциону"
+    previous-page:
+      name: "<yellow>Предыдущая страница"
+    next-page:
+      name: "<yellow>Следующая страница"
+    page-info:
+      name: "<white>Страница <page> из <pages>"
+      lore:
+        - "<gray>Всего записей: <white><total>"
+    sort:
+      name: "<yellow>Сортировка: <white><sort>"
+    search:
+      name: "<yellow>Поиск"
+    sell:
+      name: "<green>Продать предмет из руки"
+    my-listings:
+      name: "<yellow>Мои лоты"
+    history:
+      name: "<yellow>История"
+    mailbox:
+      name: "<yellow>Почта"
+      lore:
+        - "<gray>Ожидает выдачи: <white><count>"
+    mailbox-claim-all:
+      name: "<green>Забрать всё"
+    category-all:
+      name: "<white>Все категории <selected>"
+    category-weapons:
+      name: "<white>Оружие <selected>"
+    category-armor:
+      name: "<white>Броня <selected>"
+    category-blocks:
+      name: "<white>Блоки <selected>"
+    category-food:
+      name: "<white>Еда <selected>"
+    category-rare:
+      name: "<white>Редкое <selected>"
+    category-other:
+      name: "<white>Прочее <selected>"
+    confirm-item:
+      name: "<white>Лот"
+    confirm-buy:
+      name: "<green>Купить за <gold><price> <currency>"
+      lore:
+        - "<gray>Продавец: <white><seller>"
+        - "<gray>Осталось: <white><remaining>"
+    confirm-remove:
+      name: "<red>Снять с продажи"
+      lore:
+        - "<gray>Предмет вернётся вам."
+    confirm-cancel:
+      name: "<red>Назад"
+    confirm-preview:
+      name: "<yellow>Посмотреть содержимое"
+    sell-item:
+      name: "<white>Предмет"
+    sell-info:
+      name: "<yellow>Сводка"
+      lore:
+        - "<gray>Предмет: <white><item> x<amount>"
+        - "<gray>Цена: <gold><price> <currency>"
+        - "<gray>Срок: <white><duration>"
+    sell-price:
+      name: "<green>Цена: <gold><price> <symbol>"
+      lore:
+        - "<yellow>Нажмите, чтобы ввести цену в наковальне."
+    sell-confirm:
+      name: "<green>Выставить на продажу"
+    sell-cancel:
+      name: "<red>Отменить продажу"
+    player-cancel-all:
+      name: "<red>Снять все лоты (<count>)"
+      lore:
+        - "<gray>Убирает с аукциона все ваши активные лоты."
+        - "<gray>Предметы вернутся в инвентарь или почту."
+    duration:
+      name: "<yellow>Срок: <white><duration> <selected>"
+    history-filter:
+      name: "<yellow>Фильтр: <white><filter> <selected>"
+    all-history-filter:
+      name: "<white>Все операции <selected>"
+    sold-history-filter:
+      name: "<white>Мои продажи <selected>"
+    bought-history-filter:
+      name: "<white>Мои покупки <selected>"
+    expired-history-filter:
+      name: "<white>Истёкшие <selected>"
+    cancelled-history-filter:
+      name: "<white>Отменённые <selected>"
+    returned-history-filter:
+      name: "<white>Возвраты <selected>"
+    currency-0:
+      name: "<yellow>Валюта 1"
+    currency-1:
+      name: "<yellow>Валюта 2"
+    currency-2:
+      name: "<yellow>Валюта 3"
+    currency-3:
+      name: "<yellow>Валюта 4"
